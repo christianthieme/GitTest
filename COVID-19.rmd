@@ -36,10 +36,16 @@ df
 
 ```{r}
 line_chart <- df %>% dplyr::top_n(15, Confirmed)
-line_chart
+line_chart 
 ```
 
-```{r}
-
+```{r fig.width= 12, fig.height= 6}
+ggplot(line_chart) + 
+  aes(x = reorder(Location, Confirmed), y = Confirmed) + 
+  geom_col() + 
+  ylab("Confirmed Cases") + 
+  xlab("Location") + 
+  geom_text(aes(label = Confirmed), hjust = -.25 ) + 
+  coord_flip()
 ```
 
